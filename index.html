@@ -3,112 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Setup & Tap Guide | Event Wristband</title>
+    <title>Event Wristband | Help & Setup</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
+            --bg: #090d16;
+            --card: #131c2e;
+            --border: #23324d;
+            --text-main: #f1f5f9;
             --text-sub: #94a3b8;
-            --accent: #38bdf8;
-            --accent-green: #34d399;
-            --border: #334155;
+            --blue: #38bdf8;
+            --green: #34d399;
+            --orange: #fb923c;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding: 20px 16px; display: flex; justify-content: center; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg); color: var(--text-main); padding: 24px 16px; display: flex; justify-content: center; }
         .container { max-width: 440px; width: 100%; }
-        
+
         /* Header */
-        .header { text-align: center; margin-bottom: 24px; padding-top: 10px; }
-        .header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
-        .header p { color: var(--text-sub); font-size: 13px; margin-top: 4px; }
-        
-        /* Section Card */
-        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
-        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
-        .badge-tap { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
-        .badge-setup { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); }
-        
-        .card-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-        .card-desc { font-size: 13px; color: var(--text-sub); line-height: 1.5; margin-bottom: 16px; }
-        
-        /* Phone diagram */
-        .phone-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 12px; }
-        .phone-box { text-align: center; border: 1px dashed var(--border); border-radius: 8px; padding: 10px; }
-        .phone-box .title { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
-        .phone-box .loc { font-size: 11px; color: var(--accent); font-weight: 500; }
-        
-        /* Steps */
-        .step-list { list-style: none; }
-        .step-item { display: flex; align-items: flex-start; margin-bottom: 14px; }
-        .step-num { background: var(--border); color: var(--text-main); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; margin-right: 12px; flex-shrink: 0; margin-top: 2px; }
-        .step-text { font-size: 13px; line-height: 1.4; color: var(--text-sub); }
-        .step-text strong { color: var(--text-main); }
-        
-        /* Button */
-        .btn-group { display: flex; gap: 8px; margin-top: 12px; }
-        .btn { flex: 1; text-align: center; padding: 10px; background: #334155; color: #fff; text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 600; transition: background 0.2s; }
-        .btn:hover { background: #475569; }
-        
+        .header { text-align: center; margin-bottom: 24px; }
+        .header h1 { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
+        .header .tagline { font-size: 13px; font-weight: 700; color: var(--blue); margin-top: 6px; letter-spacing: 1px; }
+
+        /* Card System */
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 18px; }
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+        .badge-blue { background: rgba(56,189,248,0.15); color: var(--blue); }
+        .badge-green { background: rgba(52,211,153,0.15); color: var(--green); }
+        .badge-orange { background: rgba(251,146,60,0.15); color: var(--orange); }
+
+        .title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+        .desc { font-size: 13px; color: var(--text-sub); line-height: 1.5; margin-bottom: 16px; }
+
+        /* Section 1: Phone Guidance */
+        .sensor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .sensor-box { background: rgba(0,0,0,0.25); border: 1px dashed var(--border); border-radius: 10px; padding: 12px 8px; text-align: center; }
+        .sensor-box .phone-type { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+        .sensor-box .phone-loc { font-size: 11px; color: var(--blue); }
+
+        /* Section 2: Owner Steps */
+        .steps { list-style: none; }
+        .step { display: flex; gap: 12px; margin-bottom: 12px; }
+        .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--border); color: var(--text-main); font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .step-content { font-size: 13px; color: var(--text-sub); line-height: 1.4; }
+        .step-content strong { color: var(--text-main); }
+        .supported-urls { font-size: 11px; color: var(--text-sub); margin-top: 8px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; line-height: 1.5; }
+
+        /* Section 3: Troubleshooting Accordion */
+        details { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 13px; border: 1px solid var(--border); }
+        summary { font-weight: 600; cursor: pointer; color: var(--text-main); outline: none; }
+        details p { font-size: 12px; color: var(--text-sub); margin-top: 8px; line-height: 1.5; }
+
         /* Footer */
-        .footer { text-align: center; font-size: 11px; color: var(--text-sub); margin-top: 10px; }
+        .footer { text-align: center; font-size: 12px; color: var(--text-sub); margin-top: 24px; line-height: 1.8; }
+        .footer .chip-title { color: var(--text-main); font-weight: 700; font-size: 13px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Brand Header -->
+        <!-- Brand / Slogan Header -->
         <div class="header">
             <h1>SMART EVENT WRISTBAND</h1>
-            <p>Tap or Scan to connect seamlessly</p>
+            <div class="tagline">TAP TO SHARE · SCAN FOR HELP</div>
         </div>
 
-        <!-- Section 1: For the person tapping (Receiver) -->
+        <!-- STATE 1: RECEIVER -->
         <div class="card">
-            <span class="badge badge-tap">👋 Someone showed you this band?</span>
-            <h2 class="card-title">How to Tap (NFC)</h2>
-            <p class="card-desc">No app required. Just wake your phone screen and hold it against the wristband patch.</p>
+            <span class="badge badge-blue">👋 SOMEONE SHARED THIS BAND?</span>
+            <div class="title">Just Tap Your Phone</div>
+            <div class="desc">No app or setup is required to open the shared link. Unlock your phone and hold its NFC area near the wristband patch.</div>
             
-            <div class="phone-guide">
-                <div class="phone-box">
-                    <div class="title">📱 iPhone</div>
-                    <div class="loc">Top Edge (顶部)</div>
+            <div class="sensor-grid">
+                <div class="sensor-box">
+                    <div class="phone-type">📱 iPhone</div>
+                    <div class="phone-loc">Top Edge Area</div>
                 </div>
-                <div class="phone-box">
-                    <div class="title">🤖 Android</div>
-                    <div class="loc">Center Back (背部中间)</div>
+                <div class="sensor-box">
+                    <div class="phone-type">🤖 Android</div>
+                    <div class="phone-loc">NFC Area on the Back</div>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: For the Wristband Owner (Setup) -->
+        <!-- STATE 2: WRISTBAND OWNER -->
         <div class="card">
-            <span class="badge badge-setup">⚙️ Wristband Owner?</span>
-            <h2 class="card-title">30-Second Setup Guide</h2>
-            <p class="card-desc">Program any link (Instagram, LinkedIn, Website, Event Ticket) into your wristband.</p>
+            <span class="badge badge-green">⚙️ WRISTBAND OWNER?</span>
+            <div class="title">Program Your Wristband</div>
+            <div class="desc">No account. No subscription. Use any NFC writing app to link your profile or event page.</div>
             
-            <ul class="step-list">
-                <li class="step-item">
+            <ul class="steps">
+                <li class="step">
                     <div class="step-num">1</div>
-                    <div class="step-text">Download free app <strong>"NFC Tools"</strong> on your phone.</div>
+                    <div class="step-content">Open any NFC writing app<br><span style="font-size:11px; color:#64748b;">(for example, NFC Tools)</span></div>
                 </li>
-                <li class="step-item">
+                <li class="step">
                     <div class="step-num">2</div>
-                    <div class="step-text">Open App ➔ Select <strong>Write</strong> ➔ <strong>Add a record</strong> ➔ Paste your URL.</div>
+                    <div class="step-content">Choose <strong>Write ➔ Add URL</strong> and paste your link.</div>
                 </li>
-                <li class="step-item">
+                <li class="step">
                     <div class="step-num">3</div>
-                    <div class="step-text">Tap <strong>Write</strong> and touch your phone to the wristband patch. <strong>Done!</strong></div>
+                    <div class="step-content">Tap <strong>Write</strong> and hold your phone near the wristband patch.</div>
                 </li>
             </ul>
 
-            <div class="btn-group">
-                <a href="https://apps.apple.com/app/nfc-tools/id1252962749" target="_blank" class="btn">App Store (iOS)</a>
-                <a href="https://play.google.com/store/apps/details?id=com.wakdev.wdnfc" target="_blank" class="btn">Google Play</a>
+            <div class="supported-urls">
+                ✨ <strong>Works with:</strong> Instagram · LinkedIn · Linktree · Websites · Event Pages · Digital Business Cards
             </div>
         </div>
 
+        <!-- STATE 3: TROUBLESHOOTING -->
+        <div class="card">
+            <span class="badge badge-orange">❓ NFC NOT RESPONDING?</span>
+            <div class="title">Quick Troubleshooting</div>
+            
+            <details>
+                <summary>iPhone: Nothing happens when tapping</summary>
+                <p>Make sure your iPhone is <strong>XS or newer</strong>, the screen is ON, and the phone is unlocked. Hold the <strong>top edge</strong> of your iPhone close to the patch for 1–2 seconds.<br><br>Note: NFC background reading may not work while <strong>Camera or Apple Pay/Wallet is in use</strong>.</p>
+            </details>
+
+            <details>
+                <summary>Android: How do I turn on NFC?</summary>
+                <p>Make sure <strong>NFC is turned ON</strong> in your phone settings. Hold the back of your phone near the patch and move it slightly to find the NFC sensor location.</p>
+            </details>
+
+            <details>
+                <summary>Can I rewrite or lock the wristband?</summary>
+                <p>Yes. The wristband is <strong>rewritable</strong>. You can change the URL anytime unless the tag has been permanently locked.<br><br>For public events, <strong>password protection</strong> can help prevent unauthorized rewriting. Avoid permanent locking if you may need to update the URL later.</p>
+            </details>
+        </div>
+
+        <!-- Footer -->
         <div class="footer">
-            <p>100% Battery-free & Rewritable · Powered by Standard NTAG</p>
+            <div class="chip-title">Genuine NXP NTAG213</div>
+            <div>No Account · No Subscription · No Battery</div>
         </div>
     </div>
 </body>
